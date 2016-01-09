@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://php-churchmanagement.rhcloud.com/',
+	'url' => 'https://aqueous-beach-3949.herokuapp.com/',
 
 	/*
 	|--------------------------------------------------------------------------
