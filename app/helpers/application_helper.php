@@ -1,5 +1,17 @@
 <?php
 // My common functions
+function displayUserProfilePicture($user)
+{
+	if ($user && File::exists($user->image_url))
+	{
+	    return URL::asset($user->image_url);
+	}
+	else
+	{
+		return URL::asset('adminlte/dist/img/user2-160x160.jpg');
+	}
+
+}
 function displayUserName()
 {
     return (Auth::user() ? Auth::user()->name : 'Guest');

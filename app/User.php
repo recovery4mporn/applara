@@ -45,4 +45,23 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return date('M d Y', strtotime($value));
 	}
 
+	public function getJoinedOnAttribute($value)
+	{
+		return date('M d Y', strtotime($value));
+	}
+
+	public function getMarriedAttribute($value)
+	{
+		return $value == 1 ? "Married" : "Single";
+	}
+
+
+	public function getAnnointingTakenAttribute($value)
+	{
+		return $value == 1 ? "Received" : "Not yet received";
+	}
+	public function getBaptismTakenAttribute($value)
+	{
+		return $value == 1 ? "Taken" : "Not yet taken";
+	}
 }

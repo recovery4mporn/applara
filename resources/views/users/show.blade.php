@@ -16,7 +16,33 @@
       <!-- Profile Image -->
       <div class="box box-primary">
         <div class="box-body box-profile">
-          <img class="profile-user-img img-responsive img-circle" src="{{ URL::asset('adminlte/dist/img/user2-160x160.jpg') }}" alt="User profile picture">
+          <!-- Button trigger modal -->
+          <!-- <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Launch demo modal
+          </button> -->
+
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="myModalLabel">Upload your new profile picture</h4>
+                </div>
+                <form enctype="multipart/form-data" method='post' action='/users/{{$user->id}}/update_profile_picture'>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <div class="modal-body">
+                  <input id="fileupload" type="file" name="image">
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <input type="submit" id="#pic_btn" class="btn btn-primary">
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <a href="#myModal" data-toggle="modal" data-target="#myModal"><img class="profile-user-img img-responsive img-circle" src="{{ displayUserProfilePicture($user) }}" alt="User profile picture"></a>
           <h3 class="profile-username text-center">{{$user->name}}</h3>
           <p class="text-muted text-center">{{ $user->church()->get()->first()->name}}</p>
 
@@ -30,9 +56,25 @@
             <li class="list-group-item">
               <b>Phone Number</b> <a class="pull-right">{{ $user->phone_number }}</a>
             </li>
+            <li class="list-group-item">
+              <b>Gender</b> <a class="pull-right">{{ $user->gender }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Baptism</b> <a class="pull-right">{{ $user->baptism_taken }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Annointing</b> <a class="pull-right">{{ $user->annointing_taken }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Marriage status</b> <a class="pull-right">{{ $user->married }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Joined On</b> <a class="pull-right">{{ $user->joined_on }}</a>
+            </li>
+
           </ul>
 
-          <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+          <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
         </div><!-- /.box-body -->
       </div><!-- /.box -->
 
@@ -42,19 +84,19 @@
           <h3 class="box-title">About Me</h3>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <strong><i class="fa fa-book margin-r-5"></i>  Education</strong>
+          <strong><i class="fa fa-book margin-r-5"></i>Job</strong>
           <p class="text-muted">
-            B.S. in Computer Science from the University of Tennessee at Knoxville
+            {{ $user->job }}
           </p>
 
           <hr>
 
-          <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-          <p class="text-muted">Malibu, California</p>
+          <strong><i class="fa fa-map-marker margin-r-5"></i>Address</strong>
+          <p class="text-muted">{{ $user->address }}</p>
 
           <hr>
 
-          <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+<!--           <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
           <p>
             <span class="label label-danger">UI Design</span>
             <span class="label label-success">Coding</span>
@@ -67,7 +109,7 @@
 
           <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
-        </div><!-- /.box-body -->
+ -->        </div><!-- /.box-body -->
       </div><!-- /.box -->
     </div><!-- /.col -->
     <div class="col-md-9">

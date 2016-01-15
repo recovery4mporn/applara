@@ -29,19 +29,57 @@
 </div>
 
 <div class="form-group">
-  <label class="">
-    <div aria-disabled="false" aria-checked="false" style="position: relative;" class="iradio_minimal-blue"><input style="position: absolute; opacity: 0;" name="r1" class="minimal" type="radio"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
-  </label>
-</div>
-<!-- <div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <div class="checkbox">
-      <label>
-        <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-      </label>
-    </div>
+  <label class="col-sm-2 control-label" name="gender">Gender</label>
+    <div class="col-sm-10">
+      <input type="radio" value="male" class="" name="gender" id="gender1" > Male
+      <input type="radio" value="female" class="" name="gender" id="gender2" > Female
   </div>
-</div> -->
+</div>
+
+<div class="form-group">
+  <label for="joined_on" class="col-sm-2 control-label">Joined On</label>
+  <div class="col-sm-10">
+    <input type="date" class="form-control" name="joined_on" id="inputJoinedon" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="job" class="col-sm-2 control-label">Job</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" name="job" id="inputJob" placeholder="Job">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="address" class="col-sm-2 control-label">Address</label>
+  <div class="col-sm-10">
+    <textarea class="form-control" name="address" id="inputAddress" placeholder="Address"></textarea>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label" for="married">Married</label>
+    <div class="col-sm-10">
+      <input type="radio" value="1" class="" name="married" id="married1" > Yes 
+      <input type="radio" value="0" class="" name="married" id="married2" > No
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label" name="baptism_taken">Baptism</label>
+    <div class="col-sm-10">
+      <input type="radio" value="1" class="" name="baptism_taken" id="baptism1" > Taken 
+      <input type="radio" value="0" class="" name="baptism_taken" id="baptism2" > Not Taken
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label" name="annointing_taken">Annointing</label>
+    <div class="col-sm-10">
+      <input type="radio" value="1" class="" name="annointing_taken" id="annointing1" > Received 
+      <input type="radio" value="0" class="" name="annointing_taken" id="annointing2" > Not Yet Received
+  </div>
+</div>
 
 <div class="form-group">
   <div class="col-sm-offset-2 col-sm-10">

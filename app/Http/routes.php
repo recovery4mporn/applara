@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'WelcomeController@index');
+Route::post('users/{id}/update_profile_picture', 'UsersController@update_profile_picture');
 Route::resource('users', 'UsersController');
 
 Route::get('home', 'HomeController@index');
