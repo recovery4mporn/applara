@@ -1,5 +1,7 @@
-@extends('app')
-
+@extends('layouts/application')
+@section('title')
+	Login Page
+@endsection
 @section('content')
 <div class="container-fluid">
 	<div class="row">

@@ -54,7 +54,7 @@ return [
 	|
 	*/
 
-	'from' => ['address' => null, 'name' => null],
+	'from' => ['address' => 'no-reply@hopchurch.com', 'name' => "HOP Church"],
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
 	|
 	*/
 
-	'username' => null,
+	'username' => 'postmaster@sandboxb36fb95ababa4bc4b045a7fb5b0ad45d.mailgun.org',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
 	|
 	*/
 
-	'password' => null,
+	'password' => "11b55ad42ccd0ae4288d496fdfb6b081",
 
 	/*
 	|--------------------------------------------------------------------------
