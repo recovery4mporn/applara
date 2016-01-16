@@ -31,4 +31,12 @@ function displayChurchNameofUser($user){
 	return $user->church()->get()->first()->name;
 }
 
+function displayLogoutLink(){
+	return Auth::user() ? "/auth/logout" : "#";
+}
+
+function displayViewProfileLink(){
+	return Auth::user() ? "/users/".Auth::user()->id : "#";
+}
+
 ?>
