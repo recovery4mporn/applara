@@ -30,8 +30,8 @@
 
             <!-- we will also add show, edit, and delete buttons -->
             <td>
-                <a class="btn btn-small btn-success" href="{{ URL::to('families/' . $value->id) }}">Show User</a>
-                <a class="btn btn-small btn-danger" href="{{ URL::to('families/' . $value->id ) }}" data-method="delete" data-confirm="Are you sure ?"  data-token="{{csrf_token()}}">Delete User</a>
+                <a class="btn btn-small btn-success" href="{{ URL::to('families/' . $value->id) }}">Show Family</a>
+                <a class="btn btn-small btn-danger" href="{{ URL::to('families/' . $value->id ) }}" data-method="delete" data-confirm="Are you sure ?"  data-token="{{csrf_token()}}">Delete Family</a>
             </td>
           </tr>
         @endforeach  
@@ -39,9 +39,6 @@
         <tr>
           <th>ID</th>
           <th>Name</th>
-          <th>Email</th>
-          <th>Phone Number</th>
-          <th>DOB</th>
           <th>Actions</th>
         </tr>
     </table>

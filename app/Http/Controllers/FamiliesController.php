@@ -60,7 +60,7 @@ class FamiliesController extends Controller {
             $family->save();
             User::whereIn("id", $request->input('members'))->update(["family_id" => $family->id]);
             Session::flash('status', 'Successfully created the Family!');
-            return redirect('/users');
+            return redirect('/families');
         }
 
   }
@@ -82,6 +82,38 @@ class FamiliesController extends Controller {
       Session::flash('error', 'Sorry there is no Family!');
       return view('families.index');
     }
+  }
+
+  public function update_profile_picture(Request $request, $id){
+    $family = Family::find($id);
+    $file = array('image' => $request->file('image'));
+    // setting up rules
+    $rules = array('image' => 'required|mimes:jpeg,bmp,png',); //mimes:jpeg,bmp,png and for max size max:10000
+    // doing the validation, passing post data, rules and the messages
+    $validator = Validator::make($file, $rules);
+    if ($validator->fails()) {
+    // send back to the page with the input data and errors
+      return redirect('families');
+    }
+    else {
+    // checking file is valid.
+    if ($request->file('image')->isValid()) {
+      $destinationPath = 'uploads/families/'; // upload path
+      $extension = $request->file('image')->getClientOriginalExtension(); // getting image extension
+      $fileName = $family->id .'.'.$extension; // renameing image
+      $request->file('image')->move($destinationPath, $fileName); // uploading file to given path
+      // sending back with message
+      $family->image_url = $destinationPath .'/'. $fileName;
+      $family->save();
+      Session::flash('status', 'Upload successfully'); 
+      return redirect()->action('FamiliesController@show', [$family->id]);
+    }
+    else {
+      // sending back with error message.
+      Session::flash('error', 'uploaded file is not valid');
+      return redirect()->action('FamiliesController@show', [$family->id]);
+    }
+    }   
   }
 
   /**
@@ -115,6 +147,13 @@ class FamiliesController extends Controller {
   public function destroy($id)
   {
     //
+    $family = Family::find($id);
+    if($family){
+      User::where("family_id", "=", $id)->update(["family_id" => null]);
+      Family::destroy($id);
+      Session::flash('status', 'The user has been deleted!'); 
+    }
+    return redirect('families');
   }
 
     public function getRestrictions()

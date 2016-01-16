@@ -12,6 +12,19 @@ function displayUserProfilePicture($user)
 	}
 
 }
+
+function displayFamilyProfilePicture($family)
+{
+	if ($family && File::exists($family->image_url))
+	{
+	    return URL::asset($family->image_url);
+	}
+	else
+	{
+		return URL::asset('adminlte/dist/img/user2-160x160.jpg');
+	}
+
+}
 function displayUserName()
 {
     return (Auth::user() ? Auth::user()->name : 'Guest');
