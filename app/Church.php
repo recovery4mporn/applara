@@ -1,7 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Family;
 class Church extends Model {
 
 
@@ -14,6 +14,10 @@ class Church extends Model {
 	    return $this->hasMany('App\User'); // or whatever your namespace is
 	}
 
+	public function families()
+	{
+	    return Family::whereIn("id",  Church::find(1)->users()->whereNotNull("family_id")->select('family_id')->lists('family_id'))->get(); // or whatever your namespace is
+	}
 	//
 
 }

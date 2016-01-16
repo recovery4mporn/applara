@@ -40,3 +40,6 @@
      user experience. Slimscroll is required when using the
      fixed layout. -->
 <script src="{{ URL::asset('js/laravel.js') }}"></script>
+<!-- Select2 -->
+<link rel="stylesheet" href="{{ URL::asset('adminlte/plugins/select2/select2.min.css') }}">
+<script src="{{ URL::asset('adminlte/plugins/select2/select2.full.min.js') }}"></script>    

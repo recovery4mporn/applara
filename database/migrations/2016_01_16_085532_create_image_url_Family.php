@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFamilyTable extends Migration {
+class CreateImageUrlFamily extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,6 +13,11 @@ class CreateFamilyTable extends Migration {
 	public function up()
 	{
 		//
+		Schema::table('families', function(Blueprint $table)
+		{
+	        $table->engine = 'InnoDB';
+			$table->string('image_url');
+		});
 	}
 
 	/**

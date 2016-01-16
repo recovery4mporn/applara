@@ -18,7 +18,8 @@ class UsersController extends Controller {
   public function index()
   {
     //
-    $users = User::where('church_id', '=',Auth::user()->church_id)->get();
+    // $users = User::where('church_id', '=',Auth::user()->church_id)->get();
+    $users = Auth::user()->church()->get()->first()->users()->get();
     return view('users.index', ['users' => $users]);
   }
 

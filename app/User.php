@@ -35,6 +35,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->belongsTo('App\Church');
 	}
 
+	public function family(){
+		return $this->belongsTo('App\Family');
+	}
+
 	public function getCreatedAtAttribute($value)
 	{
 		return date('M Y', strtotime($value));
@@ -63,5 +67,10 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getBaptismTakenAttribute($value)
 	{
 		return $value == 1 ? "Taken" : "Not yet taken";
+	}
+
+	public function setFamilyIdAttribute($value)
+	{
+	    $this->attributes['family_id'] = $value ?: null;
 	}
 }
