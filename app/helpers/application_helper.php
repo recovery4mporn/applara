@@ -52,4 +52,8 @@ function displayViewProfileLink(){
 	return Auth::user() ? "/users/".Auth::user()->id : "#";
 }
 
+function displayUpdateAttendanceLink($id){
+	return '/attendances/'.$id.'/mark_attendance';
+}
+
 ?>

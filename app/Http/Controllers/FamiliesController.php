@@ -166,6 +166,8 @@ class FamiliesController extends Controller {
 
   public function assignValues($request, $family){
     $family->name = $request->input('name');
+    $family->description = $request->input('description');
+
     return $family;
   }
 
