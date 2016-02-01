@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'http://php-churchmanagement.rhcloud.com/',
+	'url' => 'http://localhost/',
 
 	/*
 	|--------------------------------------------------------------------------
