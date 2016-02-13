@@ -15,6 +15,12 @@ class UsersController extends Controller {
    *
    * @return Response
    */
+
+  public function __construct()
+  {
+      $this->middleware('laraguard');
+  }
+
   public function index()
   {
     //

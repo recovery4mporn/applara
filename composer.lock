@@ -4,9 +4,95 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "24c3946acc997e3f3eca7fc5c99585b2",
-    "content-hash": "5fd7134886112f1f007768c20daa4f42",
+    "hash": "93d1e7e2066e40676be72e27b99c9a76",
+    "content-hash": "1d03e4d5efb7b86505059d9ec449fa96",
     "packages": [
+        {
+            "name": "bican/roles",
+            "version": "1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/romanbican/roles.git",
+                "reference": "5922d8c136f829d7799aca7869a8139011059961"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/romanbican/roles/zipball/5922d8c136f829d7799aca7869a8139011059961",
+                "reference": "5922d8c136f829d7799aca7869a8139011059961",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Bican\\Roles": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Roman Bičan",
+                    "email": "romanbican@seznam.cz"
+                }
+            ],
+            "description": "Powerful package for handling roles and permissions in Laravel 5.",
+            "keywords": [
+                "laravel",
+                "laravel5",
+                "permissions",
+                "roles"
+            ],
+            "time": "2015-05-18 11:41:07"
+        },
+        {
+            "name": "cgross/laraguard",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cgrossde/Laraguard.git",
+                "reference": "9e21651c8b2737d2f2f65dd6c90ab7bd6728cae9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cgrossde/Laraguard/zipball/9e21651c8b2737d2f2f65dd6c90ab7bd6728cae9",
+                "reference": "9e21651c8b2737d2f2f65dd6c90ab7bd6728cae9",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "~5.0",
+                "symfony/yaml": "~2.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CGross\\Laraguard\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Gross",
+                    "email": "gross@blubyte.de",
+                    "homepage": "http://chris-labs.de"
+                }
+            ],
+            "description": "Permissions/roles for Laravel 5",
+            "keywords": [
+                "laravel",
+                "permission",
+                "role"
+            ],
+            "time": "2015-05-27 19:33:06"
+        },
         {
             "name": "classpreloader/classpreloader",
             "version": "1.4.0",
@@ -1865,6 +1951,55 @@
             "time": "2015-07-01 10:03:42"
         },
         {
+            "name": "symfony/yaml",
+            "version": "v2.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "34c8a4b51e751e7ea869b8262f883d008a2b81b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/34c8a4b51e751e7ea869b8262f883d008a2b81b8",
+                "reference": "34c8a4b51e751e7ea869b8262f883d008a2b81b8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "time": "2016-01-13 10:28:07"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v1.1.1",
             "source": {
@@ -2925,55 +3060,6 @@
             "description": "Library that helps with managing the version number of Git-hosted PHP projects",
             "homepage": "https://github.com/sebastianbergmann/version",
             "time": "2015-06-21 13:59:46"
-        },
-        {
-            "name": "symfony/yaml",
-            "version": "v3.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "3cf0709d7fe936e97bee9e954382e449003f1d9a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/3cf0709d7fe936e97bee9e954382e449003f1d9a",
-                "reference": "3cf0709d7fe936e97bee9e954382e449003f1d9a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Yaml Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-02-02 13:44:19"
         }
     ],
     "aliases": [],
