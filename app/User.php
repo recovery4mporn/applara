@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Bican\Roles\Traits\HasRoleAndPermission;
 use Bican\Roles\Contracts\HasRoleAndPermissionContract;
+use Bican\Roles\Models\Role;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract, HasRoleAndPermissionContract {
 
@@ -25,7 +26,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $fillable = ['name', 'email', 'password', 'dob', 'phone_number'];
-
+	protected $dates = ['dob', 'joined_on'];
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
@@ -44,16 +45,6 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getCreatedAtAttribute($value)
 	{
 		return date('M Y', strtotime($value));
-	}
-
-	public function getDobAttribute($value)
-	{
-		return date('M d Y', strtotime($value));
-	}
-
-	public function getJoinedOnAttribute($value)
-	{
-		return date('M d Y', strtotime($value));
 	}
 
 	public function getMarriedAttribute($value)

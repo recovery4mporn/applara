@@ -8,6 +8,7 @@ use Validator;
 use Redirect;
 use Session;
 use DB;
+use Bican\Roles\Models\Role;
 class UsersController extends Controller {
 
   /**
@@ -68,7 +69,7 @@ class UsersController extends Controller {
             $user = new User;
             $user = $this->assignValues($request, $user);
             $user->save();
-
+            $this->attachOrDetachRole($request, $user, "new");
             // redirect
             Session::flash('status', 'Successfully created user!');
             return Redirect::to('users');
@@ -81,7 +82,7 @@ class UsersController extends Controller {
    * @param  int  $id
    * @return Response
    */
-  public function show($id)
+  public function show(Request $request, $id)
   {
     $user = User::find($id);
     return view('users.show',['user' => $user]);
@@ -95,7 +96,7 @@ class UsersController extends Controller {
    */
   public function edit($id)
   {
-    //
+    
   }
 
   /**
@@ -108,16 +109,16 @@ class UsersController extends Controller {
   {
     $rules = $this->getRestrictions($request->input('id'));
         $validator = Validator::make($request->all(), $rules);
-
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('users/create')
+            return redirect()->action('UsersController@show', [$request->input('id'), 'edit'])
                 ->withErrors($validator)
                 ->withInput($request->all());
         } else {
       $user = User::find($request->input('id'));
       $user = $this->assignValues($request, $user);
       $user->save();
+      $this->attachOrDetachRole($request, $user, "edit");
       Session::flash('status', 'Successfully updated your details!');
     }
 
@@ -180,7 +181,7 @@ class UsersController extends Controller {
   public function getRestrictions($id)
   {
     return array(
-        'name' => 'required|max:255',
+      'name' => 'required|max:255',
       'email' => 'required|email|max:255|unique:users'. ($id ? ",id,$id" : ''),
       'phone_number' => 'required|min:10',
       'dob' => 'required',
@@ -188,6 +189,7 @@ class UsersController extends Controller {
       'gender' => 'required',
       'baptism_taken' => 'required',
       'annointing_taken' => 'required',
+      'member_type' => 'required'
         );
   }
 
@@ -203,8 +205,27 @@ class UsersController extends Controller {
     $user->married = $request->input('married');
     $user->job = $request->input('job');
     $user->address = $request->input('address');
+    $user->member_type = $request->input('member_type');
     $user->church_id  = Auth::user()->church()->get()->first()->id;
     return $user;
+  }
+
+  public function attachOrDetachRole($request, $user, $action){
+    $roles = Role::all();
+    if($action == "edit"){
+      if(empty($request->input("roles"))){
+        $user->detachAllRoles();
+        return;
+      }
+    }
+    foreach ($roles as $role){
+      if($user->hasRole($role->slug) && !empty($request->input("roles")) && !in_array($role->slug, $request->input("roles"))){
+        $user->detachRole($role);
+      }
+      elseif(!$user->hasRole($role->slug) && !empty($request->input("roles")) && in_array($role->slug, $request->input("roles"))){
+        $user->attachRole($role);
+      }
+    }
   }
 
 }
