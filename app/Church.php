@@ -14,6 +14,11 @@ class Church extends Model {
 	    return $this->hasMany('App\User'); // or whatever your namespace is
 	}
 
+	public function zones()
+	{
+	    return $this->hasMany('App\Zone'); // or whatever your namespace is
+	}
+
 	public function attendances()
 	{
 	    return $this->hasMany('App\Attendance'); // or whatever your namespace is

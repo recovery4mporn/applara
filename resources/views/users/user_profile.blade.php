@@ -24,7 +24,7 @@
 <div class="form-group">
   <label for="inputDob" class="col-sm-2 control-label">Date of Birth</label>
   <div class="col-sm-10">
-    <input type="date" class="form-control" name="dob" id="inputDob"  value="{{isset($user) ? $user->dob->format('Y-m-d') : Request::old('dob')}}" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+    <input type="date" class="form-control" name="dob" id="inputDob"  value="{{isset($user) ? $user->dob : Request::old('dob')}}" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
   </div>
 </div>
 
@@ -39,7 +39,7 @@
 <div class="form-group">
   <label for="joined_on" class="col-sm-2 control-label">Joined On</label>
   <div class="col-sm-10">
-    <input type="date" class="form-control" name="joined_on" value="{{isset($user) ? $user->joined_on->format('Y-m-d') : Request::old('joined_on')}}" id="inputJoinedon" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+    <input type="date" class="form-control" name="joined_on" value="{{isset($user) ? $user->joined_on : Request::old('joined_on')}}" id="inputJoinedon" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
   </div>
 </div>
 
@@ -90,6 +90,18 @@
   </div>
 </div>
 
+<div class="form-group">
+  <label for="description" class="col-sm-2 control-label">Zones</label>
+  <div class="col-sm-10">
+    <select name="zone" class="form-control select-2">
+      @foreach(Auth::user()->church()->get()->first()->zones()->get() as $key => $value)
+        <option value="{{$value->id}}" {{isset($user) && $user->zone_id==$value->id ? 'selected' : ''}} >{{$value->name}}</option>
+      @endforeach  
+    </select>
+
+  </div>
+</div>
+
 
 <div class="form-group">
   <label class="col-sm-2 control-label" name="roles">Roles</label>
@@ -107,3 +119,5 @@
     <button type="submit" class="btn btn-danger">Submit</button>
   </div>
 </div>
+
+<script type="text/javascript">$(".select-2"  ).select2();</script>

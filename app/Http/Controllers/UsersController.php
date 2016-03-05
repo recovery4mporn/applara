@@ -206,6 +206,7 @@ class UsersController extends Controller {
     $user->job = $request->input('job');
     $user->address = $request->input('address');
     $user->member_type = $request->input('member_type');
+    $user->zone_id = $request->input('zone');
     $user->church_id  = Auth::user()->church()->get()->first()->id;
     return $user;
   }
@@ -218,11 +219,11 @@ class UsersController extends Controller {
         return;
       }
     }
-    foreach ($roles as $role){
-      if($user->hasRole($role->slug) && !empty($request->input("roles")) && !in_array($role->slug, $request->input("roles"))){
+    foreach($roles as $role){
+      if($user->is($role->slug) && !empty($request->input("roles")) && !in_array($role->slug, $request->input("roles"))){
         $user->detachRole($role);
       }
-      elseif(!$user->hasRole($role->slug) && !empty($request->input("roles")) && in_array($role->slug, $request->input("roles"))){
+      elseif(!$user->is($role->slug) && !empty($request->input("roles")) && in_array($role->slug, $request->input("roles"))){
         $user->attachRole($role);
       }
     }

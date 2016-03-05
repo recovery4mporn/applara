@@ -70,7 +70,8 @@ class AttendanceController extends Controller {
     {
         //
       $attendance = Auth::user()->church()->first()->attendances()->where("id","=", $id)->first();
-      return view('attendances.show',['attendance' => $attendance]);
+      $zones = Auth::user()->church()->first()->zones()->get();
+      return view('attendances.show',['attendance' => $attendance, 'zones' => $zones]);
     }
 
     /**

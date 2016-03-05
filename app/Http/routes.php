@@ -16,6 +16,7 @@ Route::post('families/{id}/update_profile_picture', 'FamiliesController@update_p
 Route::post('attendances/{id}/mark_attendance', 'AttendanceController@mark_attendance');
 Route::resource('users', 'UsersController');
 Route::resource('families', 'FamiliesController');
+Route::resource('zones', 'ZoneController');
 
 Route::resource('attendances', 'AttendanceController');
 

@@ -48,7 +48,7 @@
 
           <ul class="list-group list-group-unbordered">
             <li class="list-group-item">
-              <b>Born on</b> <a class="pull-right">{{ $user->dob->format('M-d-Y') }}</a>
+              <b>Born on</b> <a class="pull-right">{{ $user->dob }}</a>
             </li>
             <li class="list-group-item">
               <b>Email</b> <a class="pull-right">{{ $user->email }}</a>
