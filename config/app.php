@@ -148,6 +148,7 @@ return [
 		 * Custom Providers
 		 */
 		'App\Providers\HelperServiceProvider',
+    'Bican\Roles\RolesServiceProvider',
 	],
 
 	/*
