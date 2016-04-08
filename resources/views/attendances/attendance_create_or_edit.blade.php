@@ -10,7 +10,7 @@
 <div class="form-group">
   <label for="description" class="col-sm-2 control-label">Description</label>
   <div class="col-sm-10">
-    <textarea class="form-control" name="description" id="inputAddress"  value="{{ old('description') }}" placeholder="A small description about your family"></textarea>
+    <textarea class="form-control" name="description" id="inputAddress"  value="{{ old('description') }}" placeholder="A small description about the event of attendance"></textarea>
   </div>
 </div>
 
