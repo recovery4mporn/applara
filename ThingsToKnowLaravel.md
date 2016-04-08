@@ -29,3 +29,9 @@ DESCRIBE users
 
 App Service Provider 
 $url->forceSchema('https'); in production
+
+
+https://devcenter.heroku.com/articles/git
+
+Run in heroku
+heroku run php artisan migrate
