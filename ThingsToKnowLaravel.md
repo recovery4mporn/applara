@@ -27,5 +27,5 @@ ALTER TABLE users DROP COLUMN member_type
 ALTER TABLE users ADD COLUMN member_type integer
 DESCRIBE users
 
-
-
+App Service Provider 
+$url->forceSchema('https'); in production
