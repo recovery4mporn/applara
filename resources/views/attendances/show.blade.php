@@ -15,7 +15,7 @@
       <!-- DONUT CHART -->
       <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title">Attendants Chart</h3>
+          <h3 class="box-title">Attendants Chart - Members</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -30,7 +30,7 @@
       <!-- DONUT CHART -->
       <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title">Littles Chart</h3>
+          <h3 class="box-title">Littles Chart - Members</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -45,7 +45,7 @@
       <!-- DONUT CHART -->
       <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title">Teens Chart</h3>
+          <h3 class="box-title">Teens Chart - Members</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -60,7 +60,7 @@
       <!-- DONUT CHART -->
       <div class="box box-danger">
         <div class="box-header with-border">
-          <h3 class="box-title">Adults Chart</h3>
+          <h3 class="box-title">Adults Chart - Members</h3>
           <div class="box-tools pull-right">
             <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
             <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -97,26 +97,105 @@
           <p class="text-muted text-center">Attended Members</p>
 
           <ul class="list-group list-group-unbordered">
-          @foreach($attendance->attendance_users()->where("attended", "=", 1)->get() as $key => $attendance_user)
+          @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 1)->get()->lists("user_id"))->whereIn("member_type",[0])->get() as $key => $user)
             <li class="list-group-item">
-              <a  href="/users/{{$attendance_user->user_id}}"><b>{{App\User::find($attendance_user->user_id)->name}}</b></a><a class="pull-right">{{ App\User::find($attendance_user->user_id)->phone_number }}</a>
+              <a  href="/users/{{$user->user_id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
             </li>
           @endforeach
           </ul>
 
           <p class="text-muted text-center">Absent Members</p>
           <ul class="list-group list-group-unbordered">
-          @foreach($attendance->attendance_users()->where("attended", "=", 0)->get() as $key => $attendance_user)
+          @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 0)->get()->lists("user_id"))->whereIn("member_type",[0])->get() as $key => $user)
             <li class="list-group-item">
-              <a  href="/users/{{$attendance_user->user_id}}"><b>{{App\User::find($attendance_user->user_id)->name}}</b></a><a class="pull-right">{{ App\User::find($attendance_user->user_id)->phone_number }}</a>
+              <a  href="/users/{{$user->user_id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
             </li>
           @endforeach
           </ul>
+
+          <p class="text-muted text-center">Attended New Comers</p>
+
+          <ul class="list-group list-group-unbordered">
+          @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 1)->get()->lists("user_id"))->whereIn("member_type",[1])->get() as $key => $user)
+            <li class="list-group-item">
+              <a  href="/users/{{$user->user_id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
+            </li>
+          @endforeach
+          </ul>
+
+          <p class="text-muted text-center">Absent New Comers</p>
+          <ul class="list-group list-group-unbordered">
+          @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 1)->get()->lists("user_id"))->whereIn("member_type",[1])->get() as $key => $user)
+            <li class="list-group-item">
+              <a  href="/users/{{$user->user_id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
+            </li>
+          @endforeach
+          </ul>
+
+          <p class="text-muted text-center">Attended Non Members</p>
+
+          <ul class="list-group list-group-unbordered">
+          @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 1)->get()->lists("user_id"))->whereIn("member_type",[2])->get() as $key => $user)
+            <li class="list-group-item">
+              <a  href="/users/{{$user->user_id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
+            </li>
+          @endforeach
+          </ul>
+
+
+          <!-- @foreach($zones as $zone)
+            <p class="text-muted text-center">{{$zone->name}} Attended Members and New Comers</p>
+
+            <ul class="list-group list-group-unbordered">
+          
+            @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 1)->get()->lists("user_id"))->where("zone_id","=", $zone->id)->whereIn("member_type",[0,1])->get() as $key => $user)        
+              <li class="list-group-item">
+                <a  href="/users/{{$user->id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
+              </li>
+            @endforeach
+            </ul>
+            <p class="text-muted text-center">{{$zone->name}} Absent Members and New Comers</p>
+
+            <ul class="list-group list-group-unbordered">
+          
+            @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 0)->get()->lists("user_id"))->where("zone_id","=", $zone->id)->whereIn("member_type",[0,1])->get() as $key => $user)        
+              <li class="list-group-item">
+                <a  href="/users/{{$user->id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
+              </li>
+            @endforeach
+            </ul>
+          @endforeach -->
           <!--  -->
           <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
         </div><!-- /.box-body -->
       </div><!-- /.box -->
+      @foreach($zones as $zone)
+        <div class="box box-primary">
+          <div class="box-body box-profile">
+            <h3 class="profile-username text-center">{{$zone->name}}</h3>
+            <p class="text-muted text-center">{{$zone->name}} Attended Members and New Comers</p>
 
+            <ul class="list-group list-group-unbordered">
+          
+            @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 1)->get()->lists("user_id"))->where("zone_id","=", $zone->id)->whereIn("member_type",[0,1])->get() as $key => $user)        
+              <li class="list-group-item">
+                <a  href="/users/{{$user->id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
+              </li>
+            @endforeach
+            </ul>
+            <p class="text-muted text-center">{{$zone->name}} Absent Members and New Comers</p>
+
+            <ul class="list-group list-group-unbordered">
+          
+            @foreach(App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 0)->get()->lists("user_id"))->where("zone_id","=", $zone->id)->whereIn("member_type",[0,1])->get() as $key => $user)        
+              <li class="list-group-item">
+                <a  href="/users/{{$user->id}}"><b>{{$user->name}}</b></a><a class="pull-right">{{ $user->phone_number }}</a>
+              </li>
+            @endforeach
+            </ul>
+          </div>
+        </div>
+      @endforeach
       <!-- About Me Box -->
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -165,13 +244,13 @@ $(function() {
   var pieChart = new Chart(pieChartCanvas);
   var PieData = [
     {
-      value: {{$attendance->attendance_users()->where("attended", "=", 0)->count()}},
+      value: {{App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 0)->lists("user_id"))->whereIn("member_type", [0])->count()}},
       color: "#f56954",
       highlight: "#f56954",
       label: "Absent Members"
     },
     {
-      value: {{$attendance->attendance_users()->where("attended", "=", 1)->count()}},
+      value: {{App\User::whereIn("id", $attendance->attendance_users()->where("attended", "=", 1)->lists("user_id"))->whereIn("member_type", [0])->count()}},
       color: "#00a65a",
       highlight: "#00a65a",
       label: "Attended Members"
@@ -181,13 +260,13 @@ $(function() {
 
   var PieKidsData = [
     {
-      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",1)->lists('user_id'))->where('dob','>', Carbon\Carbon::now()->subYears(10))->count()}},
+      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",1)->lists('user_id'))->where('dob','>', Carbon\Carbon::now()->subYears(10))->whereIn("member_type", [0])->count()}},
       color: "#f39c12",
       highlight: "#f39c12",
       label: "Attended Kids"
     },
     {
-      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",0)->lists('user_id'))->where('dob','>', Carbon\Carbon::now()->subYears(10))->count()}},
+      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",0)->lists('user_id'))->where('dob','>', Carbon\Carbon::now()->subYears(10))->whereIn("member_type", [0])->count()}},
       color: "#00c0ef",
       highlight: "#00c0ef",
       label: "Absent Kids"
@@ -195,14 +274,14 @@ $(function() {
   ];
   var PieAdultsData = [
     {
-      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",1)->lists('user_id'))->where('dob','<', Carbon\Carbon::now()->subYears(24))->count()
+      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",1)->lists('user_id'))->where('dob','<', Carbon\Carbon::now()->subYears(24))->whereIn("member_type", [0])->count()
 }},
       color: "#f39c12",
       highlight: "#f39c12",
       label: "Attended Adults"
     },
     {
-      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",0)->lists('user_id'))->where('dob','<', Carbon\Carbon::now()->subYears(24))->count()
+      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",0)->lists('user_id'))->where('dob','<', Carbon\Carbon::now()->subYears(24))->whereIn("member_type", [0])->count()
 }},
       color: "#00c0ef",
       highlight: "#00c0ef",
@@ -211,14 +290,14 @@ $(function() {
   ];
   var PieTeensData = [
     {
-      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",1)->lists('user_id'))->where('dob','>', Carbon\Carbon::now()->subYears(24))->where('dob','<', Carbon\Carbon::now()->subYears(10))->count()
+      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",1)->lists('user_id'))->where('dob','>', Carbon\Carbon::now()->subYears(24))->where('dob','<', Carbon\Carbon::now()->subYears(10))->whereIn("member_type", [0])->count()
 }},
       color: "#3c8dbc",
       highlight: "#3c8dbc",
       label: "Attended Teens"
     },
     {
-      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",0)->lists('user_id'))->where('dob','>', Carbon\Carbon::now()->subYears(24))->where('dob','<', Carbon\Carbon::now()->subYears(10))->count()
+      value: {{App\User::whereIn('id',$attendance->attendance_users()->where('attended',"=",0)->lists('user_id'))->where('dob','>', Carbon\Carbon::now()->subYears(24))->where('dob','<', Carbon\Carbon::now()->subYears(10))->whereIn("member_type", [0])->count()
 }},
       color: "#d2d6de",
       highlight: "#d2d6de",

@@ -66,6 +66,14 @@
 </div>
 
 <div class="form-group">
+  <label for="inputweddingDate" class="col-sm-2 control-label">Wedding Date</label>
+  <div class="col-sm-10">
+    <input type="date" class="form-control" name="weddingDate" id="inputweddingDate"  value="{{isset($user) ? $user->weddingDate : Request::old('weddingDate')}}" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask>
+  </div>
+</div>
+
+
+<div class="form-group">
   <label class="col-sm-2 control-label" name="baptism_taken">Baptism</label>
     <div class="col-sm-10">
       <input type="radio" value="1" class="" {{isset($user) ? ($user->baptism_taken == 'Taken' ? 'checked' : '') : Request::old('baptism_taken') == '1' ? 'checked' : ''}} name="baptism_taken" id="baptism1" > Taken 
