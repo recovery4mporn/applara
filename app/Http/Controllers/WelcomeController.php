@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
-
+use Auth;
+use Redirect;
 class WelcomeController extends Controller {
 
 	/*
@@ -30,7 +31,11 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		if(Auth::guest()) {
+		    return Redirect::to('auth\login');
+		} else {
+		    return Redirect::to('home');
+		}
 	}
 
 }

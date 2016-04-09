@@ -52,8 +52,8 @@
 								<button type="submit" class="btn btn-primary" style="margin-right: 15px;">
 									Login
 								</button>
-
 								<a href="/password/email">Forgot Your Password?</a>
+								<a href="/auth/register">Register</a>
 							</div>
 						</div>
 					</form>

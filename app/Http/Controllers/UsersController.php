@@ -21,11 +21,22 @@ class UsersController extends Controller {
   {
   }
 
-  public function index()
+  public function index(Request $request)
   {
     //
     // $users = User::where('church_id', '=',Auth::user()->church_id)->get();
-    $users = Auth::user()->church()->get()->first()->users()->get();
+    if($request->input('view') == 0){
+      $users = Auth::user()->church()->get()->first()->users()->where("member_type","=",0)->get();
+    }
+    elseif($request->input('view') == 1){
+      $users = Auth::user()->church()->get()->first()->users()->where("member_type","=",1)->get();
+    }
+    elseif($request->input('view') == 2){
+      $users = Auth::user()->church()->get()->first()->users()->where("member_type","=",2)->get();
+    }
+    else{
+      $users = Auth::user()->church()->get()->first()->users()->get();
+    }
     return view('users.index', ['users' => $users]);
   }
 
@@ -203,6 +214,7 @@ class UsersController extends Controller {
     $user->baptism_taken = $request->input('baptism_taken');
     $user->annointing_taken = $request->input('annointing_taken');
     $user->married = $request->input('married');
+    $user->weddingDate = $request->input('weddingDate');
     $user->job = $request->input('job');
     $user->address = $request->input('address');
     $user->member_type = $request->input('member_type');

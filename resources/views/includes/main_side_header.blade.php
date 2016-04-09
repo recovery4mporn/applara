@@ -36,7 +36,10 @@
                 <a href="#"><i class="fa fa-link"></i> <span>User</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                   <li><a href="/users/create">Create User</a></li>
-                  <li><a href="/users"> Users Index</a></li>
+                  <li><a href="/users"> All Users Index</a></li>
+                  <li><a href="/users?view=1"> New Comers Index</a></li>
+                  <li><a href="/users?view=0"> Members Index</a></li>
+                  <li><a href="/users?view=2"> Non Members Index</a></li>
                 </ul>
               </li>
               <li class="treeview">
