@@ -25,7 +25,10 @@ class UsersController extends Controller {
   {
     //
     // $users = User::where('church_id', '=',Auth::user()->church_id)->get();
-    if($request->input('view') == 0){
+    if(!($request->has('view'))){
+      $users = Auth::user()->church()->get()->first()->users()->get();
+    } 
+    elseif($request->input('view') == 0){
       $users = Auth::user()->church()->get()->first()->users()->where("member_type","=",0)->get();
     }
     elseif($request->input('view') == 1){
@@ -33,9 +36,6 @@ class UsersController extends Controller {
     }
     elseif($request->input('view') == 2){
       $users = Auth::user()->church()->get()->first()->users()->where("member_type","=",2)->get();
-    }
-    else{
-      $users = Auth::user()->church()->get()->first()->users()->get();
     }
     return view('users.index', ['users' => $users]);
   }
