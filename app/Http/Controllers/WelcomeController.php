@@ -32,7 +32,7 @@ class WelcomeController extends Controller {
 	public function index()
 	{
 		if(Auth::guest()) {
-		    return Redirect::to('auth\login');
+		    return Redirect::to('auth/login');
 		} else {
 		    return Redirect::to('home');
 		}
