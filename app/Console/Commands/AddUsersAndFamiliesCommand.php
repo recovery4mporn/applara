@@ -85,7 +85,7 @@ class AddUsersAndFamiliesCommand extends Command {
         // $zone_hash["5"] = $church->zones()->where("name","=","Zone 5")->first()->id;
         // $no_zone = $church->zones()->where("name","=","No Zone")->first()->id;
         
-        $user = App\User::where("name","=",$family_name)->where("church_id","=", $church_id)->first();
+        $user = App\User::where("name","=",$user_name)->where("church_id","=", $church_id)->first();
         $family = App\Family::where("name","=",$family_name)->first();
           
         if($user)
@@ -142,11 +142,8 @@ class AddUsersAndFamiliesCommand extends Command {
           $new_user->church_id = $church_id;
           if($family){
             $family_id = $family->id;
-            if($family_id == $user->family_id){;}
-            else{
-              $new_user->family_id = $family_id;
-              $new_user->save();
-            }
+            $new_user->family_id = $family_id;
+            $new_user->save();
           }
           else {
             $new_family = new Family();
