@@ -15,26 +15,8 @@
     $user = App\User::where("name","=",$user_name)->where("church_id","=", $church_id)->first();
     (($user && ($user->dob != $row[4])) && !empty($row[4])) ? $user = null : "";
     ($user || empty($row[9])) ? "" : ($user = App\User::where("email","=",$row[9])->first());
-    $family = App\Family::where("name","=",$family_name)->first()xit
-    ;
-    if($user){
-      if($family){
-        $family_id = $family->id;
-        if($family_id == $user->family_id){;}
-        else{
-          $user->family_id = $family_id;
-          $user->save();
-        }
-      }
-      else {
-        echo "Adding New Family" . $cnt . "\n";
-        $new_family = new Family();
-        $new_family->name = $row[1];
-        $new_family->save();
-        User::whereIn("id", [$user->id])->update(["family_id" => $new_family->id]);
-      }
-    }
-    else{
+    $family = App\Family::where("name","=",$family_name)->first();
+    
       echo "Adding New User" . $cnt . "\n";
       $new_user = new User();
       $new_user->name = $row[2];
@@ -82,6 +64,6 @@
         $new_user->family_id = $new_family->id;
         $new_user->save();
       }
-    }
+    
   }
   fclose($file);
