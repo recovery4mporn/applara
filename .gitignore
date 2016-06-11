@@ -2,3 +2,4 @@
 /public/uploads
 /node_modules
 /public/uploads
+.env
