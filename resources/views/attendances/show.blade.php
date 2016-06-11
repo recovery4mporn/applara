@@ -103,19 +103,19 @@
           <?php $attended_users=App\User::whereIn("id", $attended_users_ids)->get(); ?>
           <?php 
           $attended_members = $attended_users->filter(function ($item) {
-          return $item->member_type = 0;
+          return $item->member_type == 0;
           });
           $absent_members = $absent_users->filter(function ($item) {
-          return $item->member_type = 0;
+          return $item->member_type == 0;
           });
           $attended_new_comers = $attended_users->filter(function ($item) {
-          return $item->member_type = 1;
+          return $item->member_type == 1;
           });
           $absent_new_comers = $absent_users->filter(function ($item) {
-          return $item->member_type = 1;
+          return $item->member_type == 1;
           });
           $attended_non_members = $attended_users->filter(function ($item) {
-          return $item->member_type = 2;
+          return $item->member_type == 2;
           });
           ?>
           @foreach($attended_members as $key => $user)
