@@ -8,6 +8,7 @@ use App\Attendance;
 use App\AttendanceUser;
 use Session;
 use Illuminate\Http\Request;
+use DB;
 use Carbon\Carbon;
 class AttendanceController extends Controller {
 
@@ -97,16 +98,18 @@ class AttendanceController extends Controller {
       if(Auth::user()->church()->first()->attendances()->where("id","=", $id)){
         Auth::user()->church()->first()->attendances()->where("id","=", $id)->first()->attendance_users()->delete();
       }
-      foreach ($user_ids as $user_id) {
+      $attendance_users = array();
+      foreach($user_ids as $user_id) {
         if(in_array($user_id, $attendants)){
-          $this->assignAttendanceForUser(1, $id, $user_id);
+          array_push($attendance_users, $this->assignAttendanceForUser(1, $id, $user_id));
           // echo "Added Attended ". $user_id;
         }
         else{
-          $this->assignAttendanceForUser(0, $id, $user_id);
+          array_push($attendance_users, $this->assignAttendanceForUser(0, $id, $user_id));
           // echo "Added Not Attended ". $user_id;
         }
       }
+      DB::table('attendances_users')->insert($attendance_users);
       Session::flash('status', 'Successfully marked the attendance!');
       return view('attendances/edit', ['trequest' => $id, 'attended_user_ids' => $attendants]);      
       // print_r(array_values($attendants));
@@ -152,11 +155,12 @@ class AttendanceController extends Controller {
       return $attendance;
     }
     public function assignAttendanceForUser($attended, $id, $user_id){
-      $attendance_user = new AttendanceUser;
-      $attendance_user->attendance_id = $id;
-      $attendance_user->user_id = $user_id;
-      $attendance_user->attended = $attended;
-      $attendance_user->save();
-      return $attendance_user;
+      return (array("attendance_id" => $id, "user_id" => $user_id, "attended" => $attended));
+      // $attendance_user = new AttendanceUser;
+      // $attendance_user->attendance_id = $id;
+      // $attendance_user->user_id = $user_id;
+      // $attendance_user->attended = $attended;
+      // $attendance_user->save();
+      // return $attendance_user;
     }
 }
