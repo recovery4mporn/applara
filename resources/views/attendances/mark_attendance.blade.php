@@ -7,6 +7,7 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Address</th>
         </tr>
       </thead>
       <tbody>
@@ -18,6 +19,9 @@
               @else
                 <input type="checkbox" name="attendants[]"  value="{{ $value->id }}">{{ $value->name }}
               @endif
+            </td>
+            <td>
+              {{ $value->address }}
             </td>
           </tr>
         @endforeach  

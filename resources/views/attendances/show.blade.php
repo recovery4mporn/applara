@@ -294,15 +294,15 @@ $(function() {
   var PieData = [
     {
       value: {{$attended_members->count()}},
-      color: "#f56954",
-      highlight: "#f56954",
-      label: "Absent Members"
-    },
-    {
-      value: {{$absent_members->count()}},
       color: "#00a65a",
       highlight: "#00a65a",
       label: "Attended Members"
+    },
+    {
+      value: {{$absent_members->count()}},
+      color: "#f56954",
+      highlight: "#f56954",
+      label: "Absent Members"
     }
   ];
   
