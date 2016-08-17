@@ -95,25 +95,25 @@ class AttendanceController extends Controller {
     {
       $user_ids = Auth::user()->church()->get()->first()->users()->lists('id');
       $attendants = $request->input('attendants');
-      if(Auth::user()->church()->first()->attendances()->where("id","=", $id)){
-        Auth::user()->church()->first()->attendances()->where("id","=", $id)->first()->attendance_users()->delete();
+      if(Auth::user()->church()->get()->first()->attendances()->where("id","=", $id)){
+        Auth::user()->church()->get()->first()->attendances()->where("id","=", $id)->first()->attendance_users()->delete();
       }
       $attendance_users = array();
       foreach($user_ids as $user_id) {
         if(in_array($user_id, $attendants)){
           array_push($attendance_users, $this->assignAttendanceForUser(1, $id, $user_id));
-          echo "Added Attended ". $user_id;
+          //echo "Added Attended ". $user_id;
         }
         else{
           array_push($attendance_users, $this->assignAttendanceForUser(0, $id, $user_id));
-          echo "Added Not Attended ". $user_id;
+          //echo "Added Not Attended ". $user_id;
         }
       }
       DB::table('attendances_users')->insert($attendance_users);
-      //Session::flash('status', 'Successfully marked the attendance!');
-      //return view('attendances/edit', ['trequest' => $id, 'attended_user_ids' => $attendants]);      
-      print_r(array_values($attendants));
-      print_r(array_values($user_ids));
+      Session::flash('status', 'Successfully marked the attendance!');
+      return view('attendances/edit', ['trequest' => $id, 'attended_user_ids' => $attendants]);      
+      //print_r(array_values($attendants));
+      //print_r(array_values($user_ids));
       // return('attendances/'.$id.'/edit');
     }
 
