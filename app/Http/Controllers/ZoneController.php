@@ -52,9 +52,15 @@ class ZoneController extends Controller {
             ->withInput($request->all());
     } else {
         // store
-        Zone->where("id", ">", 7)->delete();
+        Zone::destroy(8);
+        Zone::destroy(9);
+        Zone::destroy(10);
+        Zone::destroy(11);
         $zone = new Zone;
-        $zone = $this->assignValues($request, $zone);
+
+        $church = Auth::user()->church()->get()->first();
+
+        $zone = $this->assignValues($request, $zone, $church->id);
         $zone->save();
         // redirect
         Session::flash('status', 'Successfully created zone!');
@@ -104,8 +110,10 @@ class ZoneController extends Controller {
             ->withInput($request->all());
     } else {
         // update
-        $zone = Auth::user()->church()->get()->first()->zones()->get()->find($request->input('id'));
-        $zone = $this->assignValues($request, $zone);  
+        $church = Auth::user()->church()->get()->first();
+
+        $zone = $church->zones()->get()->find($request->input('id'));
+        $zone = $this->assignValues($request, $zone, $church->id);  
         $zone->save();
         // // redirect
         Session::flash('status', 'Successfully updated zone!');
@@ -130,10 +138,10 @@ class ZoneController extends Controller {
     );
   }
 
-  public function assignValues($request, $zone){
+  public function assignValues($request, $zone, $church_id){
     $zone->name = $request->input('name');
     $zone->description = $request->input('description');
-    $zone->church_id = Auth::user()->church()->get()->first()->id;
+    $zone->church_id = $church_id;
     return $zone;
   }
 
