@@ -52,10 +52,6 @@ class ZoneController extends Controller {
             ->withInput($request->all());
     } else {
         // store
-        // Zone::destroy(8);
-        // Zone::destroy(9);
-        // Zone::destroy(10);
-        // Zone::destroy(11);
         $zone = new Zone;
 
         $church = Auth::user()->church()->get()->first();

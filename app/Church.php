@@ -26,7 +26,7 @@ class Church extends Model {
 
 	public function families()
 	{
-	    return Family::whereIn("id",  Church::find(1)->users()->whereNotNull("family_id")->select('family_id')->lists('family_id'))->get(); // or whatever your namespace is
+    return Family::whereIn("id",  $this->users()->whereNotNull("family_id")->select('family_id')->lists('family_id'))->get(); // or whatever your namespace is
 	}
 	//
 
