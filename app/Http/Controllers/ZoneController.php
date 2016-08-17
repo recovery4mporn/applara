@@ -52,6 +52,7 @@ class ZoneController extends Controller {
             ->withInput($request->all());
     } else {
         // store
+        Zone->where("id", ">", 7)->delete();
         $zone = new Zone;
         $zone = $this->assignValues($request, $zone);
         $zone->save();
@@ -132,7 +133,7 @@ class ZoneController extends Controller {
   public function assignValues($request, $zone){
     $zone->name = $request->input('name');
     $zone->description = $request->input('description');
-    $zone->church_id = 1;
+    $zone->church_id = Auth::user()->church()->get()->first()->id;
     return $zone;
   }
 
