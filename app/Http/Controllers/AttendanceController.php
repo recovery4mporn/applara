@@ -93,7 +93,7 @@ class AttendanceController extends Controller {
 
     public function mark_attendance(Request $request, $id)
     {
-      $user_ids = Auth::user()->church->first()->users()->lists('id');
+      $user_ids = Auth::user()->church()->get()->first()->users()->lists('id');
       $attendants = $request->input('attendants');
       if(Auth::user()->church()->first()->attendances()->where("id","=", $id)){
         Auth::user()->church()->first()->attendances()->where("id","=", $id)->first()->attendance_users()->delete();
