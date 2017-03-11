@@ -22,6 +22,6 @@ Login Credentials:
 
 danielsamfdo@gmail.com
 
-dan123
+Password:dan123
 
 Please dont delete anyone from the Application
