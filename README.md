@@ -19,7 +19,9 @@ Responsive UI(courtesy of AdminLTE)
 Url: https://church-management.herokuapp.com/
 
 Login Credentials:
+
 danielsamfdo@gmail.com
+
 dan123
 
 Please dont delete anyone from the Application
