@@ -1,3 +1,22 @@
+# applara
+
+
+
+Church Management Application Built in Laravel
+
+Features:
+
+Chart Reports of Attendance
+
+Add Families
+
+Add Zones of Regions
+
+Add Roles to People
+
+Responsive UI(courtesy of AdminLTE)
+
+
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
